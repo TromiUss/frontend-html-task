@@ -8,49 +8,85 @@ export const SidebarContainer = styled.div<{ $isOpened: boolean }>`
   padding: 10px 0;
   border: groove 1px gray;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: width 0.5s ease;
 
   & > div {
-    margin: 10px 20px;
+    flex-shrink: 0;
+    margin-left: ${(props) => (props.$isOpened ? '30px' : '0')};
   }
-
 
   .sidebar__title {
     opacity: ${(props) => (props.$isOpened ? 1 : 0)};
     visibility: ${(props) => (props.$isOpened ? "visible" : "hidden")};
-    transition: all 0.3s ease;
     margin-left: ${(props) => (props.$isOpened ? "10px" : "0")};
-  }
-
-  & > div:first-child img {
-    width: 50px;
+    transition: 
+      opacity ${props => props.$isOpened ? '1.5s' : '0.2s'} ease,
+      visibility ${props => props.$isOpened ? '1.5s' : '0.2s'} ease,
+      margin-left ${props => props.$isOpened ? '1.5s' : '0.4s'} ease;
+    position: ${(props) => (props.$isOpened ? "static" : "absolute")};
   }
 
   & > div:first-child {
-    width: 170px;
     display: flex;
-    flex-wrap: nowrap;
     align-items: center;
+    justify-content: ${(props) => (props.$isOpened ? "space-between" : "center")};
+    position: relative;
+    height: 50px;
+    transition: all 0.5s ease;
   }
 
-  & > div:first-child div {
-    margin-left: auto;
+  & > div:first-child {
+    margin-left: ${(props) => (props.$isOpened ? "20px" : "0")};
+  }
+
+  & > div:first-child img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+  }
+
+  & > div:first-child > div {
+    position: ${(props) => (props.$isOpened ? "static" : "absolute")};
+    right: ${(props) => (props.$isOpened ? "10px" : "-10px")};
+    top: 10px;
     cursor: pointer;
+    z-index: 10;
+    transition: 
+      right 0.4s ease,
+      opacity 0.4s ease,
+      transform 0.4s ease;
   }
 
   & > div:nth-child(2) {
     margin-top: 30px;
+    margin-left: ${(props) => (props.$isOpened ? "30px" : "10px")};
+    display: flex;
+    width: ${(props) => (props.$isOpened ? "auto" : "50px")};
+    flex-direction: column;
+    align-items: ${(props) => (props.$isOpened ? "flex-start" : "center")};
+    transition: margin 0.4s ease;
   }
 
   & > div:nth-child(2) > div {
-    margin: ${(props) => (props.$isOpened ? "20px 0" : "0")};
+    margin: ${(props) => (props.$isOpened ? "10px 0" : "10px 0")};
+    text-align: center;
+    transition: margin 0.4s ease;
   }
 
   & > div:last-child {
-    margin-top: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: ${(props) => (props.$isOpened ? "flex-start" : "center")};
   }
 
   & > div:last-child > div {
     margin: 20px 0;
+    text-align: center;
+    transition: margin 0.4s ease;
   }
 `;
